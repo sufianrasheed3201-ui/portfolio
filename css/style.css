@@ -1,3 +1,5 @@
+/* metric-matched fallbacks: less text reflow while web fonts load */
+@font-face{font-family:"Manrope fb";src:local("Arial"),local("ArialMT"),local("Helvetica"),local("Liberation Sans");font-weight:100 550;size-adjust:102.1%}@font-face{font-family:"Manrope fb";src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Liberation Sans Bold");font-weight:551 750;size-adjust:100.1%}@font-face{font-family:"Manrope fb";src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Liberation Sans Bold");font-weight:751 1000;size-adjust:101.7%}@font-face{font-family:"Manrope fb";src:local("Arial"),local("ArialMT"),local("Helvetica"),local("Liberation Sans");font-weight:100 550;unicode-range:U+0030-0039;size-adjust:109.7%}@font-face{font-family:"Manrope fb";src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Liberation Sans Bold");font-weight:551 750;unicode-range:U+0030-0039;size-adjust:118.3%}@font-face{font-family:"Manrope fb";src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Liberation Sans Bold");font-weight:751 1000;unicode-range:U+0030-0039;size-adjust:121.2%}@font-face{font-family:"Bricolage Grotesque fb";src:local("Arial"),local("ArialMT"),local("Helvetica"),local("Liberation Sans");font-weight:100 550;size-adjust:105.2%}@font-face{font-family:"Bricolage Grotesque fb";src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Liberation Sans Bold");font-weight:551 750;size-adjust:101.9%}@font-face{font-family:"Bricolage Grotesque fb";src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Liberation Sans Bold");font-weight:751 1000;size-adjust:103.2%}@font-face{font-family:"Bricolage Grotesque fb";src:local("Arial"),local("ArialMT"),local("Helvetica"),local("Liberation Sans");font-weight:100 550;unicode-range:U+0030-0039;size-adjust:117.5%}@font-face{font-family:"Bricolage Grotesque fb";src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Liberation Sans Bold");font-weight:551 750;unicode-range:U+0030-0039;size-adjust:119.7%}@font-face{font-family:"Bricolage Grotesque fb";src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Liberation Sans Bold");font-weight:751 1000;unicode-range:U+0030-0039;size-adjust:120.5%}
 /* Sufian Rasheed — personal portfolio
    Layout concept: a dark editorial stage lit by one warm gold source; big type, measured motion. */
 :root{
@@ -12,8 +14,8 @@
   --text:#eee8da;
   --muted:#a59c88;
   --dim:#6f6858;
-  --display:"Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
-  --body:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display:"Bricolage Grotesque", "Bricolage Grotesque fb", "Arial Narrow", system-ui, sans-serif;
+  --body:"Manrope", "Manrope fb", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --gutter:clamp(18px,4vw,56px);
   --max:1320px;

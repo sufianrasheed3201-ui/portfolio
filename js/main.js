@@ -118,10 +118,13 @@
   function intro() {
     if (!hasGSAP || reduce) { $$('.split-line>span').forEach(s => s.style.transform = 'none'); return; }
     const heroLines = $$('.hero h1 .split-line>span, .phero .h1 .split-line>span');
-    gsap.from(heroLines, { yPercent: 110, duration: 1.2, ease: 'expo.out', stagger: .08 });
-    gsap.from('.hero__eyebrow, .hero__lede, .hero .hero__ctas, .phero .mono, .phero .lede, .phero .notice', { y: 30, opacity: 0, duration: 1, ease: 'expo.out', stagger: .08, delay: .35 });
-    gsap.from('.portrait', { clipPath: 'inset(100% 0 0 0 round 220px 220px 22px 22px)', duration: 1.4, ease: 'expo.inOut', delay: .1 });
-    gsap.from('.portrait img', { scale: 1.35, duration: 1.8, ease: 'expo.out', delay: .1 });
+    if (heroLines.length) gsap.from(heroLines, { yPercent: 110, duration: 1.2, ease: 'expo.out', stagger: .08 });
+    const heroBits = $$('.hero__eyebrow, .hero__lede, .hero .hero__ctas, .phero .mono, .phero .lede, .phero .notice');
+    if (heroBits.length) gsap.from(heroBits, { y: 30, opacity: 0, duration: 1, ease: 'expo.out', stagger: .08, delay: .35 });
+    if ($('.portrait')) {
+      gsap.from('.portrait', { clipPath: 'inset(100% 0 0 0 round 220px 220px 22px 22px)', duration: 1.4, ease: 'expo.inOut', delay: .1 });
+      gsap.from('.portrait img', { scale: 1.35, duration: 1.8, ease: 'expo.out', delay: .1 });
+    }
     gsap.from('.hdr__row > *', { y: -20, opacity: 0, duration: .8, stagger: .06, ease: 'expo.out', delay: .2 });
 
     if (!window.ScrollTrigger) return;
@@ -260,6 +263,19 @@
 
   /* to top */
   $$('.totop').forEach(b => b.addEventListener('click', () => lenis ? lenis.scrollTo(0) : scrollTo({ top: 0, behavior: 'smooth' })));
+
+  /* 3D story safety net: if the WebGL module never boots (old browser, blocked script), show the stacked layout */
+  const story = $('.story');
+  if (story && document.documentElement.classList.contains('sr-motion')) {
+    setTimeout(() => {
+      if (!story.classList.contains('gl-ready')) { document.documentElement.classList.remove('sr-motion'); if (window.ScrollTrigger) ScrollTrigger.refresh(); }
+    }, 6000);
+  }
+  /* refresh pinned/scrubbed positions once fonts and images have settled */
+  if (window.ScrollTrigger) {
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
+    addEventListener('load', () => ScrollTrigger.refresh());
+  }
 
   /* year */
   $$('[data-year]').forEach(el => el.textContent = new Date().getFullYear());

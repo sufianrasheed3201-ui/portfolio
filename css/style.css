@@ -411,3 +411,12 @@ html.sr-motion .story.gl-ready .story__stage{clip-path:inset(calc((1 - var(--ent
 .phero .wrap{position:relative;z-index:1}
 @media (max-width:899px){.phero__gl{width:min(62vw,300px);right:-12vw;top:60px;opacity:0}.phero__gl.is-ready{opacity:.55}}
 @media (min-width:900px){html:not(.sr-motion) .story__copy{grid-template-columns:1fr 1fr;column-gap:clamp(40px,6vw,100px)}}
+/* giant footer wordmark */
+.wordmark{overflow:hidden;padding:clamp(30px,5vw,60px) var(--gutter) 0;text-align:center;line-height:.8;user-select:none}
+.wordmark__t{display:inline-block;position:relative;font-family:var(--display);font-weight:700;font-size:clamp(28px,13vw,210px);letter-spacing:-.05em;color:#2a2318;white-space:nowrap;max-width:100%}
+.wordmark__t .ch{display:inline-block;will-change:transform}
+.wordmark__t::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(243,217,143,.32) 48%,transparent 66%);background-size:250% 100%;background-position:120% 0;mix-blend-mode:screen;pointer-events:none;-webkit-mask:none}
+.wordmark.is-in .wordmark__t::after{animation:wm-sweep 2.4s .5s var(--ease) both}
+@keyframes wm-sweep{to{background-position:-20% 0}}
+.wordmark__t{text-shadow:0 1px 0 rgba(212,175,95,.18)}
+@media (prefers-reduced-motion:reduce){.wordmark.is-in .wordmark__t::after{animation:none}}

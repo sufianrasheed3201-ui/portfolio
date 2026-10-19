@@ -148,6 +148,21 @@
       p.innerHTML = p.textContent.split(' ').map(w => `<span class="w">${w}</span>`).join(' ');
       gsap.to($$('.w', p), { opacity: 1, stagger: .05, ease: 'none', scrollTrigger: { trigger: p, start: 'top 80%', end: 'bottom 45%', scrub: true } });
     });
+    /* footer wordmark: letters rise one by one, then a light sweep crosses it */
+    $$('.wordmark').forEach(wm => {
+      const t = $('.wordmark__t', wm);
+      t.innerHTML = t.textContent.split('').map(c => c === ' ' ? ' ' : `<span class="ch">${c}</span>`).join('');
+      gsap.from($$('.ch', t), { yPercent: 105, opacity: 0, duration: .9, ease: 'expo.out', stagger: .045,
+        scrollTrigger: { trigger: wm, start: 'top 95%', onEnter: () => wm.classList.add('is-in') } });
+    });
+    /* cards: soft tilt toward the pointer (desktop only) */
+    if (fine) $$('.svc,.xcard,.value,.cert,.step').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        gsap.to(card, { rotateY: x * 6, rotateX: -y * 6, transformPerspective: 900, duration: .4, ease: 'power2.out', overwrite: 'auto' });
+      });
+      card.addEventListener('mouseleave', () => gsap.to(card, { rotateY: 0, rotateX: 0, duration: .6, ease: 'expo.out', overwrite: 'auto' }));
+    });
     /* counters */
     $$('[data-count]').forEach(el => {
       const end = parseFloat(el.dataset.count), suf = el.dataset.suffix || '';

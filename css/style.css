@@ -345,13 +345,13 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
 .hero h1 .h1-kw{display:inline-flex;margin-bottom:22px}
 
 /* ===== cinematic story (home) ===== */
-.story{position:relative;background:var(--ink)}
+.cine{position:relative;background:var(--ink)}
 .story__stage{position:relative;overflow:hidden}
 .story__view{position:relative;aspect-ratio:1/1;max-width:560px;margin:0 auto}
 .story__still{width:100%;height:100%;object-fit:contain;display:block}
 .story__gl{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .6s}
-.story.gl-ready .story__gl{opacity:1}
-.story.gl-ready .story__still{visibility:hidden}
+.cine.gl-ready .story__gl{opacity:1}
+.cine.gl-ready .story__still{visibility:hidden}
 .story__lines,.lbls,.hud{display:none}
 .story__copy{display:grid;gap:clamp(48px,8vw,90px);padding:0 var(--gutter) clamp(80px,12vw,140px);max-width:var(--max);margin:0 auto}
 .chap__eye{display:flex;align-items:center;gap:12px}
@@ -367,16 +367,16 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
 .chap__link svg{width:16px;height:16px}
 
 /* motion mode: pinned stage, chapters crossfade beside the object */
-html.sr-motion .story{height:calc(100svh + 4 * 115svh)}
+html.sr-motion .cine{height:calc(100svh + 4 * 115svh)}
 html.sr-motion .story__stage{position:sticky;top:0;height:100svh}
 html.sr-motion .story__view{position:absolute;inset:0;max-width:none;aspect-ratio:auto;margin:0}
 html.sr-motion .story__still{position:absolute;right:6%;top:50%;width:min(44vw,640px);height:auto;transform:translateY(-50%);opacity:.0}
-html.sr-motion .story:not(.gl-ready) .story__still{opacity:1}
-html.sr-motion .story.gl-ready .story__gl{opacity:1}
+html.sr-motion .cine:not(.gl-ready) .story__still{opacity:1}
+html.sr-motion .cine.gl-ready .story__gl{opacity:1}
 html.sr-motion .story__copy{position:absolute;inset:0;display:block;padding:0;max-width:none;pointer-events:none}
 html.sr-motion .chap{position:absolute;left:max(var(--gutter),calc((100vw - var(--max))/2 + var(--gutter)));top:50%;width:min(44vw,560px);margin-top:-170px;opacity:0;visibility:hidden;will-change:transform,opacity}
 html.sr-motion .chap.is-on{pointer-events:auto}
-html.sr-motion .story:not(.gl-ready) .chap{transition:opacity .4s}
+html.sr-motion .cine:not(.gl-ready) .chap{transition:opacity .4s}
 html.sr-motion .story__lines{display:block;position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:var(--lbl,0)}
 .story__lines line{stroke:rgba(243,217,143,.55);stroke-width:1;stroke-dasharray:2 3}
 html.sr-motion .lbls{display:block;list-style:none;margin:0;padding:0;position:absolute;inset:0;pointer-events:none;opacity:var(--lbl,0)}
@@ -390,7 +390,7 @@ html.sr-motion .hud{display:flex;position:absolute;left:max(var(--gutter),calc((
 .hud__bar{width:120px;height:1px;background:var(--line);position:relative;overflow:hidden}
 .hud__bar i{position:absolute;inset:0;background:var(--gold);transform-origin:left;transform:scaleX(0)}
 /* section mask: the stage opens like an iris as it arrives */
-html.sr-motion .story.gl-ready .story__stage{clip-path:inset(calc((1 - var(--enter,1)) * 9%) calc((1 - var(--enter,1)) * 6%) round calc((1 - var(--enter,1)) * 60px))}
+html.sr-motion .cine.gl-ready .story__stage{clip-path:inset(calc((1 - var(--enter,1)) * 9%) calc((1 - var(--enter,1)) * 6%) round calc((1 - var(--enter,1)) * 60px))}
 
 @media (max-width:899px),(max-aspect-ratio:21/20){
   html.sr-motion .story__still{right:50%;top:8%;width:min(78vw,52svh);transform:translateX(50%)}

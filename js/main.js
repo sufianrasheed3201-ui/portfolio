@@ -280,7 +280,7 @@
   $$('.totop').forEach(b => b.addEventListener('click', () => lenis ? lenis.scrollTo(0) : scrollTo({ top: 0, behavior: 'smooth' })));
 
   /* 3D story safety net: if the WebGL module never boots (old browser, blocked script), show the stacked layout */
-  const story = $('.story');
+  const story = $('.cine');
   if (story && document.documentElement.classList.contains('sr-motion')) {
     setTimeout(() => {
       if (!story.classList.contains('gl-ready')) { document.documentElement.classList.remove('sr-motion'); if (window.ScrollTrigger) ScrollTrigger.refresh(); }

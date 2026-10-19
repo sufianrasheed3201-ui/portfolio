@@ -554,7 +554,7 @@ function mini(canvas) {
 
 /* ------------------------------------------------------------------ */
 function boot() {
-  const s = document.querySelector('.story');
+  const s = document.querySelector('.cine');
   if (s) {
     let ok = false;
     try { ok = story(s); } catch (e) { ok = false; }

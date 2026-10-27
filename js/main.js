@@ -4,22 +4,28 @@
   var root = document.documentElement;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- intro (home only; overlay is inserted by the inline script in index.html) ---- */
+  /* ---- reveal (home only; overlay is inserted by the inline script in index.html) ---- */
   var intro = document.querySelector('.intro');
   function ready() { root.classList.add('ready'); }
   if (intro) {
-    var done = false;
-    var finish = function () {
-      if (done) return; done = true;
-      ready();
-      setTimeout(function () { if (intro.parentNode) intro.parentNode.removeChild(intro); }, 400);
+    var gone = false, kick = setTimeout(ready, 1600);
+    var remove = function () {
+      if (gone) return; gone = true; ready();
+      if (intro.parentNode) intro.parentNode.removeChild(intro);
+      root.classList.remove('intro-on');
+      document.removeEventListener('keydown', onKey);
     };
-    var skip = function () { if (done) return; intro.classList.add('skip'); finish(); };
-    intro.addEventListener('animationend', function (e) { if (e.target === intro) finish(); });
+    var skip = function () {
+      if (gone || intro.classList.contains('skip')) return;
+      clearTimeout(kick); ready(); intro.classList.add('skip');
+      setTimeout(remove, 420);
+    };
+    var onKey = function (e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') skip(); };
+    intro.addEventListener('animationend', function (e) { if (e.target === intro) remove(); });
     intro.addEventListener('click', skip);
-    document.addEventListener('keydown', function k(e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') { skip(); document.removeEventListener('keydown', k); } });
     intro.addEventListener('touchstart', skip, { passive: true });
-    setTimeout(finish, 2600);
+    document.addEventListener('keydown', onKey);
+    setTimeout(remove, 2600);
   } else {
     ready();
   }
